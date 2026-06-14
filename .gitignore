@@ -1,0 +1,16 @@
+# Secrets — never commit
+.env
+
+# Virtual environment
+.venv/
+
+# Python caches
+__pycache__/
+*.pyc
+
+# Generated / personal data (regenerate via the scripts)
+database/
+face_db.pkl
+
+# OS cruft
+.DS_Store

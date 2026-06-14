@@ -1,0 +1,44 @@
+# Project 6 - GenAI-Powered Face Recognition & Live Authentication
+# Python 3.11 (DeepFace/TensorFlow compatibility). Build a venv:
+#   python3.11 -m venv .venv && source .venv/bin/activate
+#   pip install -r requirements.txt
+#
+# Pinned incrementally as each part is implemented.
+
+# --- Part 1: synthetic face database downloader ---
+numpy==2.4.6
+opencv-python==4.13.0.92
+requests==2.34.2
+
+# --- Part 2: YOLO face detection ---
+ultralytics==8.4.66
+torch==2.12.0
+torchvision==0.27.0
+matplotlib==3.11.0   # also used for Part 3 heatmaps / threshold plots
+# (pillow, scipy pulled in transitively by ultralytics)
+# weights: code/models/yolov8n-face.pt from
+#   https://github.com/akanametov/yolo-face/releases/download/1.0.0/yolov8n-face.pt
+
+# --- Part 3: embeddings, matching, classifier training, backbone comparison ---
+deepface==0.0.100
+tensorflow==2.21.0
+tf-keras==2.21.0
+keras==3.14.1
+scikit-learn==1.9.0
+# (pandas pulled in by deepface)
+# DeepFace auto-downloads backbone weights to ~/.deepface/weights on first use
+# (facenet512 ~95MB, arcface ~130MB, vgg_face ~580MB).
+# DeepFace.analyze (Part 4) also downloads age/gender/emotion models (~1GB total).
+
+# --- Part 4: face attribute recognition (Claude vision) ---
+anthropic==0.109.1
+python-dotenv==1.2.2
+# (pydantic pulled in by anthropic; used for structured vision output)
+# Requires ANTHROPIC_API_KEY in a .env file at the project root (see .env.example).
+
+# --- Graduate anti-spoofing: blink/EAR liveness ---
+mediapipe==0.10.35
+# Uses the Tasks API FaceLandmarker; model bundle at
+#   code/models/face_landmarker.task (download from
+#   https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task)
+# (pulls opencv-contrib-python + sounddevice; coexists with TensorFlow's protobuf 7)
