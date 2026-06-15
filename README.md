@@ -12,7 +12,7 @@ An end-to-end face authentication system: a webcam feed is detected, embedded, m
 
 ```
 Webcam → YOLO detect → deep embedding (VGG-Face) → cosine match
-       → GenAI attributes (Claude) → decision → Face ID-style GUI
+       → GenAI attributes → decision → Face ID-style GUI
                               ↑ blink / EAR liveness gate
 ```
 
